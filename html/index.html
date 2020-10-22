@@ -11,54 +11,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" >
     <body>
-        
-        <script>
-           
-            
-            function validate_email(termsCheckBox){
-                var form=document.getElementById("form");
-                var email=document.getElementById("email").value;
-                var errors=document.getElementById("errors"); 
-                    
-
-                var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
-                var invalid_email="Please enter a valid email ";
-                var columbia="We don't accept emails from Columbia ";
-                var empty="Email box cannot be empty ";
-                var not_checked="You must be agree with our terms of use "
-
-                if (email.match(pattern) && termsCheckBox.checked){
-                    form.classList.remove("invalid");
-                    errors.innerHTML="";
-                    document.getElementById("subscribe").disabled = false;
-                    
-                }else if(!termsCheckBox.checked){
-                    form.classList.add("invalid");
-                    errors.innerHTML=not_checked
-                    document.getElementById("subscribe").disabled = true;
-                }else if(!email.match(pattern)){
-                    form.classList.add("invalid");
-                    errors.innerHTML=invalid_email;
-                    document.getElementById("subscribe").disabled = true;
-                }else if(email==""){
-                    form.classList.add("invalid");
-                    errors.innerHTML=empty;
-                    document.getElementById("subscribe").disabled = true;
-                }
-                if (email.slice(-3)=='.co'){
-                    form.classList.add("invalid");
-                    errors.innerHTML=columbia;
-                    document.getElementById("subscribe").disabled = true;
-                }
-            }
-
-            function replace(){
-                
-                
-            }
-           
-        </script>
+        <script src="jquery-3.5.1.js"></script>
+        <script src="validation.js"></script>
         <div class="navigation">
             <ul>
                 <li class="logo"><img src="../images/Israel.jpg"></li>

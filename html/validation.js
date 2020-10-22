@@ -1,25 +1,38 @@
-const emailInput = document.getElementById('#email');
-const termsCheckBox = document.getElementById('#terms');
-const okButton = document.getElementsByClassName('.subscribe')
-var  errors=[];
-function validateEmail (){
-    let mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if(!emailInput.value.match(mailformat)){
-        errors.push('Invalid email'); 
-        alert('incorrect');      
-    }
-     
-    
+function validate_email(termsCheckBox){
+    let form=document.getElementById("form");
+    let email=document.getElementById("email").value;
+    let errors=document.getElementById("errors"); 
+                    
+
+    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    let invalid_email="Please enter a valid email ";
+    let columbia="We don't accept emails from Columbia ";
+    let empty="Email box cannot be empty ";
+    let not_checked="You must be agree with our terms of use "
+
+    if (email.match(pattern) && termsCheckBox.checked){
+        form.classList.remove("invalid");
+        errors.innerHTML="";
+        document.getElementById("subscribe").disabled = false;
+                    
+        }else if(!termsCheckBox.checked){
+            form.classList.add("invalid");
+            errors.innerHTML=not_checked
+            document.getElementById("subscribe").disabled = true;
+            }else if(!email.match(pattern)){
+                form.classList.add("invalid");
+                errors.innerHTML=invalid_email;
+                 document.getElementById("subscribe").disabled = true;
+            } 
+            if(email==""){
+                form.classList.add("invalid");
+                errors.innerHTML=empty;
+                document.getElementById("subscribe").disabled = true;
+            }
+            if (email.slice(-3)=='.co'){
+                form.classList.add("invalid");
+                errors.innerHTML=columbia;
+                document.getElementById("subscribe").disabled = true;
+            }
 }
- function checkBoxTermsValidate (){
-    if (!checkBox.checked){
-        errors.push('You must agree with our terms of use');
-        alert('Not checked');
-    }
-
-}
-
-window.onload = validateEmail();
-window.onload = checkBoxTermsValidate();
-
-ReactDOM.render(errors, getElementsByClassName('.errors'));
