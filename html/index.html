@@ -1,0 +1,102 @@
+<html>
+    <script>
+     
+    </script>
+
+    <head>
+        <title>News about Israel</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" >
+    <body>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script>
+           
+            
+            function validate_email(termsCheckBox){
+                var form=document.getElementById("form");
+                var email=document.getElementById("email").value;
+                var errors=document.getElementById("errors"); 
+                    
+
+                var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+                var invalid_email="Please enter a valid email ";
+                var columbia="We don't accept emails from Columbia ";
+                var empty="Email box cannot be empty ";
+                var not_checked="You must be agree with our terms of use "
+
+                if (email.match(pattern) && termsCheckBox.checked){
+                    form.classList.remove("invalid");
+                    errors.innerHTML="";
+                    document.getElementById("subscribe").disabled = false;
+                    
+                }else if(!termsCheckBox.checked){
+                    form.classList.add("invalid");
+                    errors.innerHTML=not_checked
+                    document.getElementById("subscribe").disabled = true;
+                }else if(!email.match(pattern)){
+                    form.classList.add("invalid");
+                    errors.innerHTML=invalid_email;
+                    document.getElementById("subscribe").disabled = true;
+                }else if(email==""){
+                    form.classList.add("invalid");
+                    errors.innerHTML=empty;
+                    document.getElementById("subscribe").disabled = true;
+                }
+                if (email.slice(-3)=='.co'){
+                    form.classList.add("invalid");
+                    errors.innerHTML=columbia;
+                    document.getElementById("subscribe").disabled = true;
+                }
+            }
+
+            function replace(){
+                
+                
+            }
+           
+        </script>
+        <div class="navigation">
+            <ul>
+                <li class="logo"><img src="../images/Israel.jpg"></li>
+                <li><a class="menu" href="#">About</a></li>
+                <li><a class="menu" href="#">How it works</a></li>
+                <li><a class="menu" href="#">Contacts</a></li>
+            </ul>
+        </div>
+      
+        <div class="subscription">
+            <h1 class="shalom">שָׁלוֹם עֲלֵיכֶם</h1>
+            <h1 class="title">Subscribe to our news about Israel</h1>
+            <p class="description">Subscribe and you will be aware of Israeli politics, <br> economics and culture events!</p>
+
+            <form id="form">
+                <input id="email" class="email_input" type="email" name="mail" placeholder="youremail@mail.com" onkeydown="validate_email(document.getElementById('terms'))">
+                <br>
+                <input id="terms" class="terms_of_use_checkbox" type="checkbox" onclick="validate_email(this)">               
+                <label for="terms_of_use" id="terms_of_use_label">I have read and agree with terms of use</label>
+                <br>             
+                <button id="subscribe" class="subscribe" onclick="replace(); return false" disabled>OK</button>
+                <br>
+                <p id="errors"></p>
+            </form>
+            
+          
+        </div>
+
+        <div class="social_media">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+        </div>
+        <div class="right">
+            <img class="picture" src="../images/Jerusalem.jpg" alt="Jerusalem" >
+        </div>
+        
+    </body>
+
+</html>
