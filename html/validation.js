@@ -44,10 +44,10 @@ $(document).ready(function(){
     $("#email").keydown(function(){
         $.fn.validate_email();
     });
-    $("#subscribe").click(function(){
+    /*$("#subscribe").click(function(){
         $("#form").remove();
         $(".subscription").append('<p class=`description`>Successfully subscribed!</p>')
-    });
+    });*/
     
 });
 
